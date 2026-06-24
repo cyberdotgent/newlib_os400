@@ -11,5 +11,9 @@ extern int main(void);
 int
 _start(void)
 {
-  return main();
+  int status;
+
+  __builtin_os400mi_runtime_startup();
+  status = main();
+  return __builtin_os400mi_runtime_terminate(status);
 }
