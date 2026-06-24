@@ -530,7 +530,9 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_152 = -I$(srcdir)/xtensa/boards/esp32s3/include
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_153 = -I$(srcdir)/xtensa/boards/esp32s3/include
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_154 = -I$(srcdir)/xtensa/boards/esp32s3/include
-@CONFIG_OS400MI_TRUE@am__append_155 = os400mi/libos400mi.a
+@CONFIG_OS400MI_TRUE@am__append_155 = os400mi/crt0.o
+@CONFIG_OS400MI_TRUE@am__append_156 = os400mi/crt0.c
+@CONFIG_OS400MI_TRUE@am__append_157 = os400mi/libos400mi.a
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/../config/depstand.m4 \
@@ -2080,7 +2082,8 @@ multilibtool_DATA = $(am__append_3) $(am__append_6) $(am__append_9) \
 	$(am__append_112) $(am__append_115) $(am__append_117) \
 	$(am__append_122) $(am__append_124) $(am__append_127) \
 	$(am__append_130) $(am__append_135) $(am__append_140) \
-	$(am__append_143) $(am__append_145) $(am__append_150)
+	$(am__append_143) $(am__append_145) $(am__append_150) \
+	$(am__append_155)
 multilibtool_LIBRARIES = $(am__append_2) $(am__append_5) \
 	$(am__append_8) $(am__append_13) $(am__append_15) \
 	$(am__append_24) $(am__append_27) $(am__append_28) \
@@ -2095,7 +2098,7 @@ multilibtool_LIBRARIES = $(am__append_2) $(am__append_5) \
 	$(am__append_111) $(am__append_114) $(am__append_116) \
 	$(am__append_119) $(am__append_121) $(am__append_126) \
 	$(am__append_129) $(am__append_132) $(am__append_137) \
-	$(am__append_142) $(am__append_144) $(am__append_155)
+	$(am__append_142) $(am__append_144) $(am__append_157)
 includetooldir = $(tooldir)/include
 includetool_DATA = $(am__append_20) $(am__append_96)
 includesystooldir = $(tooldir)/include/sys
@@ -2122,7 +2125,7 @@ libobjs_a_SOURCES = $(am__append_7) $(am__append_10) $(am__append_18) \
 	$(am__append_107) $(am__append_110) $(am__append_113) \
 	$(am__append_118) $(am__append_123) $(am__append_125) \
 	$(am__append_128) $(am__append_131) $(am__append_136) \
-	$(am__append_141)
+	$(am__append_141) $(am__append_156)
 FLAGS_TO_PASS = \
 	"CC=$(CC)" \
 	"CFLAGS=$(CFLAGS)" \
@@ -4002,6 +4005,12 @@ os400mi/$(am__dirstamp):
 os400mi/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) os400mi/$(DEPDIR)
 	@: > os400mi/$(DEPDIR)/$(am__dirstamp)
+os400mi/crt0.$(OBJEXT): os400mi/$(am__dirstamp) \
+	os400mi/$(DEPDIR)/$(am__dirstamp)
+os400mi/crt0.o: os400mi/crt0.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT os400mi/crt0.o -MD -MP -MF os400mi/$(DEPDIR)/crt0.Tpo -c -o os400mi/crt0.o `test -f 'os400mi/crt0.c' || echo '$(srcdir)/'`os400mi/crt0.c
+	$(AM_V_at)$(am__mv) os400mi/$(DEPDIR)/crt0.Tpo os400mi/$(DEPDIR)/crt0.Po
+
 os400mi/syscalls.$(OBJEXT): os400mi/$(am__dirstamp) \
 	os400mi/$(DEPDIR)/$(am__dirstamp)
 os400mi/syscalls.o: os400mi/syscalls.c

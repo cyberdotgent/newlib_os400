@@ -1,3 +1,6 @@
+multilibtool_DATA += %D%/crt0.o
+libobjs_a_SOURCES += %D%/crt0.c
+
 multilibtool_LIBRARIES += %D%/libos400mi.a
 %C%_libos400mi_a_SOURCES = \
 	%D%/syscalls.c
