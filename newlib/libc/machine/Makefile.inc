@@ -121,6 +121,9 @@ endif
 if HAVE_LIBC_MACHINE_OR1K
 include %D%/or1k/Makefile.inc
 endif
+if HAVE_LIBC_MACHINE_OS400MI
+include %D%/os400mi/Makefile.inc
+endif
 if HAVE_LIBC_MACHINE_POWERPC
 include %D%/powerpc/Makefile.inc
 endif

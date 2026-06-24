@@ -125,6 +125,13 @@
 #  endif /* _LIMITS_H  */
 # endif	 /* GCC 2.  */
 
+#if defined __GNUC__ && !defined _GCC_LIMITS_H_ && !defined __GLIBC_USE
+/* Clang's builtin <limits.h> wrapper can fall through to glibc's header when
+   building newlib with a non-glibc target.  Provide a no-op definition so the
+   host header does not require glibc-internal feature macros.  */
+# define __GLIBC_USE(X) 0
+#endif
+
 #endif	 /* !_LIBC_LIMITS_H_ */
 
 #if defined __GNUC__ && !defined _GCC_LIMITS_H_

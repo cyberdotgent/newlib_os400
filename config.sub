@@ -471,7 +471,7 @@ case $1 in
 				basic_machine=mips-compaq
 				basic_os=nonstopux
 				;;
-			os400)
+			os400 | os400mi)
 				basic_machine=powerpc-ibm
 				basic_os=os400
 				;;
@@ -1248,7 +1248,7 @@ case $cpu-$vendor in
 			| orion \
 			| picochip \
 			| pdp10 | pdp11 | pj | pjl | pn | power \
-			| powerpc | powerpc64 | powerpc64le | powerpcle | powerpcspe \
+			| os400mi | powerpc | powerpc64 | powerpc64le | powerpcle | powerpcspe \
 			| pru \
 			| pyramid \
 			| riscv | riscv32 | riscv32be | riscv64 | riscv64be \

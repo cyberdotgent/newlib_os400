@@ -530,6 +530,7 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_152 = -I$(srcdir)/xtensa/boards/esp32s3/include
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_153 = -I$(srcdir)/xtensa/boards/esp32s3/include
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_154 = -I$(srcdir)/xtensa/boards/esp32s3/include
+@CONFIG_OS400MI_TRUE@am__append_155 = os400mi/libos400mi.a
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/../config/depstand.m4 \
@@ -898,6 +899,11 @@ iq2000_libeval_a_LIBADD =
 iq2000_libeval_a_OBJECTS = $(am_iq2000_libeval_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
 libnosys_libnosys_a_LIBADD =
+os400mi_libos400mi_a_AR = $(AR) $(ARFLAGS)
+os400mi_libos400mi_a_LIBADD =
+am_os400mi_libos400mi_a_OBJECTS = \
+	os400mi/syscalls.$(OBJEXT)
+os400mi_libos400mi_a_OBJECTS = $(am_os400mi_libos400mi_a_OBJECTS)
 @CONFIG_LIBNOSYS_TRUE@am_libnosys_libnosys_a_OBJECTS =  \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/chown.$(OBJEXT) \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/close.$(OBJEXT) \
@@ -1809,6 +1815,7 @@ SOURCES = $(aarch64_librdimon_a_SOURCES) \
 	$(msp430_libcrt_a_SOURCES) $(msp430_libnosys_a_SOURCES) \
 	$(msp430_libsim_a_SOURCES) $(nds32_libgloss_a_SOURCES) \
 	$(nios2_libnios2_a_SOURCES) $(or1k_libboard_atlys_a_SOURCES) \
+	$(os400mi_libos400mi_a_SOURCES) \
 	$(or1k_libboard_de0_nano_a_SOURCES) \
 	$(or1k_libboard_ml501_a_SOURCES) \
 	$(or1k_libboard_optimsoc_a_SOURCES) \
@@ -2088,7 +2095,7 @@ multilibtool_LIBRARIES = $(am__append_2) $(am__append_5) \
 	$(am__append_111) $(am__append_114) $(am__append_116) \
 	$(am__append_119) $(am__append_121) $(am__append_126) \
 	$(am__append_129) $(am__append_132) $(am__append_137) \
-	$(am__append_142) $(am__append_144)
+	$(am__append_142) $(am__append_144) $(am__append_155)
 includetooldir = $(tooldir)/include
 includetool_DATA = $(am__append_20) $(am__append_96)
 includesystooldir = $(tooldir)/include/sys
@@ -2473,6 +2480,13 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBNOSYS_TRUE@	libnosys/write.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/getentropy.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/_exit.c
+
+@CONFIG_OS400MI_TRUE@os400mi_libos400mi_a_SOURCES = \
+@CONFIG_OS400MI_TRUE@	os400mi/syscalls.c
+@CONFIG_OS400MI_TRUE@os400mi_libos400mi_a_CPPFLAGS = \
+@CONFIG_OS400MI_TRUE@	$(AM_CPPFLAGS) \
+@CONFIG_OS400MI_TRUE@	-I$(srcroot)/newlib-obj/targ-include \
+@CONFIG_OS400MI_TRUE@	-I$(srcroot)/newlib/libc/include
 
 @CONFIG_LM32_TRUE@lm32_libgloss_a_SOURCES = \
 @CONFIG_LM32_TRUE@	lm32/isatty.c \
@@ -3982,6 +3996,22 @@ libnosys/libnosys.a: $(libnosys_libnosys_a_OBJECTS) $(libnosys_libnosys_a_DEPEND
 	$(AM_V_at)-rm -f libnosys/libnosys.a
 	$(AM_V_AR)$(libnosys_libnosys_a_AR) libnosys/libnosys.a $(libnosys_libnosys_a_OBJECTS) $(libnosys_libnosys_a_LIBADD)
 	$(AM_V_at)$(RANLIB) libnosys/libnosys.a
+os400mi/$(am__dirstamp):
+	@$(MKDIR_P) os400mi
+	@: > os400mi/$(am__dirstamp)
+os400mi/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) os400mi/$(DEPDIR)
+	@: > os400mi/$(DEPDIR)/$(am__dirstamp)
+os400mi/syscalls.$(OBJEXT): os400mi/$(am__dirstamp) \
+	os400mi/$(DEPDIR)/$(am__dirstamp)
+os400mi/syscalls.o: os400mi/syscalls.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(os400mi_libos400mi_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT os400mi/syscalls.o -MD -MP -MF os400mi/$(DEPDIR)/syscalls.Tpo -c -o os400mi/syscalls.o `test -f 'os400mi/syscalls.c' || echo '$(srcdir)/'`os400mi/syscalls.c
+	$(AM_V_at)$(am__mv) os400mi/$(DEPDIR)/syscalls.Tpo os400mi/$(DEPDIR)/syscalls.Po
+
+os400mi/libos400mi.a: $(os400mi_libos400mi_a_OBJECTS) $(os400mi_libos400mi_a_DEPENDENCIES) $(EXTRA_os400mi_libos400mi_a_DEPENDENCIES) os400mi/$(am__dirstamp)
+	$(AM_V_at)-rm -f os400mi/libos400mi.a
+	$(AM_V_AR)$(os400mi_libos400mi_a_AR) os400mi/libos400mi.a $(os400mi_libos400mi_a_OBJECTS) $(os400mi_libos400mi_a_LIBADD)
+	$(AM_V_at)$(RANLIB) os400mi/libos400mi.a
 arc/crt0.$(OBJEXT): arc/$(am__dirstamp) arc/$(DEPDIR)/$(am__dirstamp)
 arc/gcrt0.$(OBJEXT): arc/$(am__dirstamp) arc/$(DEPDIR)/$(am__dirstamp)
 arc/arc-main-helper.$(OBJEXT): arc/$(am__dirstamp) \

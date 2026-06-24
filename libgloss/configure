@@ -676,6 +676,8 @@ CONFIG_PRU_FALSE
 CONFIG_PRU_TRUE
 CONFIG_OR1K_FALSE
 CONFIG_OR1K_TRUE
+CONFIG_OS400MI_FALSE
+CONFIG_OS400MI_TRUE
 CONFIG_NIOS2_FALSE
 CONFIG_NIOS2_TRUE
 CONFIG_NDS32_FALSE
@@ -3000,6 +3002,10 @@ case "${target}" in
   or1k-*-* | or1knd-*-* )
 	config_or1k=true
 	;;
+  os400mi-*-*)
+	config_os400mi=true
+	config_libnosys=false
+	;;
   pru-*-*)
 	config_pru=true
 	;;
@@ -3223,6 +3229,14 @@ fi
 else
   CONFIG_OR1K_TRUE='#'
   CONFIG_OR1K_FALSE=
+fi
+
+   if test x$config_os400mi = xtrue; then
+  CONFIG_OS400MI_TRUE=
+  CONFIG_OS400MI_FALSE='#'
+else
+  CONFIG_OS400MI_TRUE='#'
+  CONFIG_OS400MI_FALSE=
 fi
 
    if test x$config_pru = xtrue; then
@@ -5927,6 +5941,10 @@ if test -z "${CONFIG_OR1K_TRUE}" && test -z "${CONFIG_OR1K_FALSE}"; then
   as_fn_error $? "conditional \"CONFIG_OR1K\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
+if test -z "${CONFIG_OS400MI_TRUE}" && test -z "${CONFIG_OS400MI_FALSE}"; then
+  as_fn_error $? "conditional \"CONFIG_OS400MI\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${CONFIG_PRU_TRUE}" && test -z "${CONFIG_PRU_FALSE}"; then
   as_fn_error $? "conditional \"CONFIG_PRU\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
@@ -7431,4 +7449,3 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
-

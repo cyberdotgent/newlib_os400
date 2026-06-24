@@ -53,7 +53,7 @@ m4_foreach_w([MACHINE], [
   m32c m32r m68hc11 m68k m88k mep microblaze mips mn10200 mn10300 moxie msp430 mt
   nds32 necv70 nios2 nvptx
   or1k
-  powerpc pru
+  os400mi powerpc pru
   riscv rl78 rx
   sh sparc spu
   tic4x tic6x tic80

@@ -297,6 +297,10 @@ case "${host_cpu}" in
 	machine_dir=powerpc
 	libm_machine_dir=powerpc
 	;;
+  os400mi)
+	machine_dir=os400mi
+	libm_machine_dir=os400mi
+	;;
   pru*)
 	newlib_cflags="${newlib_cflags} -DPREFER_SIZE_OVER_SPEED"
 	newlib_cflags="${newlib_cflags} -DNO_EXEC"

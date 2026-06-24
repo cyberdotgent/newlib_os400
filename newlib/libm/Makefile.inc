@@ -75,6 +75,9 @@ endif
 if HAVE_LIBM_MACHINE_NDS32
 include %D%/machine/nds32/Makefile.inc
 endif
+if HAVE_LIBM_MACHINE_OS400MI
+include %D%/machine/os400mi/Makefile.inc
+endif
 if HAVE_LIBM_MACHINE_POWERPC
 include %D%/machine/powerpc/Makefile.inc
 endif
